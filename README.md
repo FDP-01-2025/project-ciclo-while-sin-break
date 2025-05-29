@@ -10,20 +10,22 @@ Este proyecto consiste en un juego de aventuras donde el jugador debe explorar u
 
 ## Equipo
 
-- **Nombre del equipo:** [Nombre del equipo]
+- **Nombre del equipo:** [Ciclo while sin break]
 
 ### Integrantes del equipo
 
-1. **Nombre completo:** [Nombre del estudiante 1]  
-   **Carnet:** [Carnet del estudiante 1]
+1. **Nombre completo:** [Andrés Eleazar Hernández García]  
+   **Carnet:** [00062625]
 
-2. **Nombre completo:** [Nombre del estudiante 2]  
-   **Carnet:** [Carnet del estudiante 2]
+2. **Nombre completo:** [Gernardo Enrique Blanco Beltran]  
+   **Carnet:** [00208424]
 
-3. **Nombre completo:** [Nombre del estudiante 3]  
-   **Carnet:** [Carnet del estudiante 3]
+3. **Nombre completo:** [Magaly Brendali Aguilar Ganillo]  
+   **Carnet:** [00209425]
 
-(Agregar más integrantes si es necesario)
+4. **Nombre completo:** [Gabriela Nicole Hernández Diaz]  
+   **Carnet:** [00217225]
+
 
 ## Instrucciones de Ejecución
 
