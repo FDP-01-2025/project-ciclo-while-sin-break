@@ -17,7 +17,7 @@ Este proyecto consiste en un juego de aventuras donde el jugador debe explorar u
 1. **Nombre completo:** [Andrés Eleazar Hernández García]  
    **Carnet:** [00062625]
 
-2. **Nombre completo:** [Gernardo Enrique Blanco Beltran]  
+2. **Nombre completo:** [Gerardo Enrique Blanco Beltran]  
    **Carnet:** [00208424]
 
 3. **Nombre completo:** [Magaly Brendali Aguilar Ganillo]  
