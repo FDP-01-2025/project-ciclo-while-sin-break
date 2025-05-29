@@ -20,7 +20,7 @@ Este proyecto consiste en un juego de aventuras donde el jugador debe explorar u
 2. **Nombre completo:** [Gerardo Enrique Blanco Beltran]  
    **Carnet:** [00208424]
 
-3. **Nombre completo:** [Magaly Brendali Aguilar Ganillo]  
+3. **Nombre completo:** [Magaly Brendali Aguilar Granillo]  
    **Carnet:** [00209425]
 
 4. **Nombre completo:** [Gabriela Nicole Hernández Diaz]  
