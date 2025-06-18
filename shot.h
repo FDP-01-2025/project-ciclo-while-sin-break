@@ -9,6 +9,6 @@ using namespace std;
 bool makeshot(char board[10][10], int fila, int columna);
 
 // Esta función verifica si quedan barcos ('B') en el tablero.
-bool makeshot(char board[10][10]);
+bool shipsRemaining(char board[10][10])
 
 #endif
