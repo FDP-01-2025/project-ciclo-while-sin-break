@@ -26,5 +26,20 @@ else
         return false;
 }
 }
+bool shipsRemaining(char board[10][10])
+{
+for (int  row = 0; row < 10; row++)
+{
+    
+}
+for (int col = 0; col < count; col++)
+    {
+        if (board[row][col] == 'B') {
+                return true; // Todavía hay barcos en el tablero
+            }
+       
+        
+    }
 
+}
 
