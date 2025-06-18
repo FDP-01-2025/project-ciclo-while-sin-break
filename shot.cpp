@@ -31,18 +31,12 @@ else
 // Si no encontramos ninguna quiere decir que el jugador ha perdido.
 bool shipsRemaining(char board[10][10])
 {
-for (int  row = 0; row < 10; row++)
-{
-    
-}
-for (int col = 0; col < count; col++)
-    {
-        if (board[row][col] == 'B') {
+    for (int row = 0; row < 10; row++) {
+        for (int col = 0; col < 10; col++) {
+            if (board[row][col] == 'B') {
                 return true; // Todavía hay barcos en el tablero
             }
-       
-        
+        }
     }
-
+    return false; // Ya no quedan barcos
 }
-
