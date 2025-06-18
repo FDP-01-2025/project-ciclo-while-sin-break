@@ -26,6 +26,9 @@ else
         return false;
 }
 }
+// Esta función sirve para revisar si aún quedan barcos sin destruir en el tablero.
+// Recorremos todo el tablero buscando algun barco vivo o una 'B' en el tablero.
+// Si no encontramos ninguna quiere decir que el jugador ha perdido.
 bool shipsRemaining(char board[10][10])
 {
 for (int  row = 0; row < 10; row++)
