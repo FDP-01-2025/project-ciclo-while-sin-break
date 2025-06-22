@@ -32,4 +32,4 @@ Para su desarrollo se utilizaron estructuras básicas de programación como cond
 
 1. Clona este repositorio en tu máquina local:
    ```bash
-   git clone [URL del repositorio]
+   git clone [https://github.com/FDP-01-2025/project-ciclo-while-sin-break.git]
