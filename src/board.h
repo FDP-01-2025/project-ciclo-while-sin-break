@@ -16,4 +16,7 @@ bool placeShip(char board[10][10], int row, int col, int size, char direction, c
 // Coloca todos los barcos del jugador preguntando al usuario
 void placeShips(char board[10][10]);
 
+// verifica si un jugador ya perdio
+bool hasLost(char board[10][10]);
+
 #endif

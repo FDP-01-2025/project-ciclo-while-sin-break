@@ -126,3 +126,11 @@ void placeShips(char board[10][10])
         }
     }
 }
+bool hasLost(char board[10][10])
+{
+    for (int i = 0; i < 10; ++i)
+        for (int j = 0; j < 10; ++j)
+            if (board[i][j] == 'B') // ← si queda una parte de barco viva...
+                return false;       // ...entonces no ha perdido aún
+    return true;                    // No quedan barcos: ¡perdió!
+}
