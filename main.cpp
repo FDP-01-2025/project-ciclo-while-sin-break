@@ -24,7 +24,24 @@ int main(){
     cout << "4. Logros" <<endl;
     cin >> options;
 
+    switch (options)
+    {
+    case 1:
+        break;
+
+    case 2:
+    break;
+
+    case 3: 
+    break;
+
+    case 4:
+    break;
     
+    default: 
+    cout << "No se encuentra dentro del menu" << endl;
+        break;
+    }
     
 
 
