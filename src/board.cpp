@@ -1,5 +1,7 @@
 #include "board.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 void Initializeboard(char board[10][10])
@@ -140,6 +142,25 @@ void placeShips(char board[10][10])
             {
                 displayboard(board);
             }
+        }
+    }
+}
+
+void placeShipRandom(char board[10][10]){
+    int shipSizesR = {5, 2, 2, 1, 1};
+    char shipRSymbols = {'B', 'B', 'B', 'B', 'B'};
+
+    srand(time(0));
+
+    for(int i = 0; i < 5; i++){
+        bool placed = false;
+
+        while (!placed){
+            int row = rand() % 10;
+            int col = rand() % 10;
+            char direction = (rand() % 2 == 0) ? 'H' : 'V';
+
+             placed = placeShip(board, row, col, shipSizesR[i], direction, shipRSymbols[i]);
         }
     }
 }
