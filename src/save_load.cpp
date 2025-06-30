@@ -4,7 +4,7 @@
 using namespace std;
 
 // Esta función guarda todo el estado de la partida en un archivo txt
-void saveGame(const char board1[10][10], const char board2[10][10],
+void save_Game(const char board1[10][10], const char board2[10][10],
               const char view1[10][10], const char view2[10][10],
               const string& name1, const string& name2, int turn) 
 {
@@ -64,7 +64,7 @@ void saveGame(const char board1[10][10], const char board2[10][10],
 }
 
 // Esta función carga los datos guardados de la partida y los mete al juego
-void loadGame(char board1[10][10], char board2[10][10],
+void load_Game(char board1[10][10], char board2[10][10],
               char view1[10][10], char view2[10][10],
               string& name1, string& name2, int& turn) 
 {
