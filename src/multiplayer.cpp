@@ -16,6 +16,7 @@ void startMultiplayer()
     cout << "Desea cargar una partida anterior? (S/N): ";
     char answer;
     cin >> answer;
+
     // cargar partida
     if (toupper(answer) == 'S')
     {
@@ -41,8 +42,10 @@ void startMultiplayer()
         cout << name2 << ", por favor coloque sus barcos:\n";
         placeShips(player2Board);
     }
+
     bool game_Over = false;
     int hit_consecutive1 = 0, hit_consecutive2 = 0;
+
     while (!game_Over)
     {
         string currentPlayer = (turn % 2 != 0) ? name1 : name2;
@@ -50,7 +53,6 @@ void startMultiplayer()
         char (*enemyBoard)[10] = (turn % 2 != 0) ? player2Board : player1Board;
         char (*myView)[10] = (turn % 2 != 0) ? viewBoard1 : viewBoard2;
         int &myConsecutiveHits = (turn % 2 != 0) ? hit_consecutive1 : hit_consecutive2;
-        int &enemyConsecutiveHits = (turn % 2 != 0) ? hit_consecutive2 : hit_consecutive1;
 
         cout << "\nTurno de " << currentPlayer << " (turno #" << turn << ")\n";
         displayboard(myView);
@@ -63,7 +65,7 @@ void startMultiplayer()
 
         if (toupper(input[0]) == 'G')
         {
-            saveGame(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
+            save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
             cout << "Partida guardada. ¡Hasta la próxima!\n";
             return;
         }
@@ -87,11 +89,12 @@ void startMultiplayer()
             myConsecutiveHits = 0;
         }
 
-        // Llamamos a checkAchievements
-        bool playerWin = hasLost(enemyBoard);
-        bool playerLose = hasLost(myBoard);
-        int shipsDestroyed = 0; // TODO: implementar contador de barcos destruidos si se desea
-        checkAchievements(hit, myConsecutiveHits, turn, playerWin, playerLose, shipsDestroyed);
+        // Llamamos a checkAchievements con los parámetros correctos
+        bool playerWin = hasLost(enemyBoard);   // enemigo perdió => jugador ganó
+        bool playerLose = hasLost(myBoard);     // mi tablero perdido => perdí
+        int shipsDestroyed = 0; // Pendiente implementar si quieres contar barcos destruidos
+
+        checkAchievements(currentPlayer, hit, myConsecutiveHits, turn, playerWin, playerLose, shipsDestroyed);
 
         if (playerWin)
         {

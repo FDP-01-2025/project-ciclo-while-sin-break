@@ -5,7 +5,7 @@
 using namespace std;
 
 // Guarda toda la partida en un archivo
-void saveGame(const char board1[10][10], const char board2[10][10],
+void save_Game(const char board1[10][10], const char board2[10][10],
               const char view1[10][10], const char view2[10][10],
               const string& name1, const string& name2, int turn);
 
