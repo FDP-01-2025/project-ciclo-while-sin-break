@@ -105,12 +105,12 @@ void placeShips(char board[10][10])
 
         while (!placed)
         {
-            cout << "Enter starting row (A-J): ";
+            cout << "Enter starting coordinates (e.g. A1): ";
             char rowChar;
             cin >> rowChar;
             row = toupper(rowChar) - 'A';
 
-            cout << "Enter starting column (1-10): ";
+            
             cin >> col;
             col -= 1;
 
