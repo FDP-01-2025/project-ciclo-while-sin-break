@@ -3,7 +3,9 @@
 #include <iostream>
 using namespace std;
 
-// Esta función guarda todo el estado de la partida en un archivo txt
+const string SAVE_HEADER = "BATTLESHIP_SAVE_V1";
+
+// Guardar partida con cabecera
 void save_Game(const char board1[10][10], const char board2[10][10],
               const char view1[10][10], const char view2[10][10],
               const string& name1, const string& name2, int turn) 
@@ -11,6 +13,9 @@ void save_Game(const char board1[10][10], const char board2[10][10],
     ofstream file("saved_game.txt"); // Creamos o sobreescribimos el archivo
     if (file.is_open()) 
     {
+        // Escribir cabecera
+        file << SAVE_HEADER << endl;
+
         // Primero guardamos los nombres de los jugadores y el turno
         file << name1 << endl;
         file << name2 << endl;
@@ -63,7 +68,7 @@ void save_Game(const char board1[10][10], const char board2[10][10],
     }
 }
 
-// Esta función carga los datos guardados de la partida y los mete al juego
+// Cargar partida con validación de cabecera
 void load_Game(char board1[10][10], char board2[10][10],
               char view1[10][10], char view2[10][10],
               string& name1, string& name2, int& turn) 
@@ -71,13 +76,22 @@ void load_Game(char board1[10][10], char board2[10][10],
     ifstream file("saved_game.txt"); // Abrimos el archivo de guardado
     if (file.is_open()) 
     {
+        // Leer y validar cabecera
+        string header;
+        getline(file, header);
+        if (header != SAVE_HEADER) {
+            cout << "Error: Save file corrupted or incompatible." << endl;
+            file.close();
+            return;
+        }
+
         // Leemos los nombres y el turno
         getline(file, name1);
         getline(file, name2);
         file >> turn;
-        file.ignore(); // Saltamos el enter después del turno
+        file.ignore(); 
 
-        // Leemos los tableros de cada jugador
+        //ler tablero de cada jugador
         for (int i = 0; i < 10; i++) 
         {
             string line;
@@ -98,7 +112,7 @@ void load_Game(char board1[10][10], char board2[10][10],
             }
         }
 
-        // Leemos lo que cada jugador ve del tablero enemigo
+        
         for (int i = 0; i < 10; i++) 
         {
             string line;

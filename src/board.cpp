@@ -1,6 +1,5 @@
 #include "board.h"
 #include <iostream>
-
 using namespace std;
 
 void Initializeboard(char board[10][10])
@@ -19,17 +18,16 @@ void displayboard(const char board[10][10])
     cout << "  ";
     for (int col = 0; col < 10; col++)
     {
-        cout << col + 1 << "  "; // Mostrar números columna arriba
+        cout << col + 1 << "  ";
     }
     cout << endl;
 
     for (int row = 0; row < 10; row++)
     {
-        cout << char('A' + row) << " "; // Letras fila al lado
-
+        cout << char('A' + row) << " ";
         for (int col = 0; col < 10; col++)
         {
-            cout << board[row][col] << "  "; // Mostrar celda
+            cout << board[row][col] << "  ";
         }
         cout << endl;
     }
@@ -76,7 +74,7 @@ bool placeShip(char board[10][10], int row, int col, int size, char direction, c
 void placeShips(char board[10][10])
 {
     int shipSizes[] = {5, 2, 2, 1, 1};
-    char shipSymbols[] = {'A', 'B', 'C', 'D', 'E'};
+    char shipSymbols[] = {'B','B','B','B','B'};
 
     for (int i = 0; i < 5; i++)
     {
@@ -84,32 +82,32 @@ void placeShips(char board[10][10])
         char direction;
         bool placed = false;
 
-        cout << "Colocando barco de tamaño " << shipSizes[i] << " (símbolo '" << shipSymbols[i] << "')\n";
+        cout << "Placing ship of size " << shipSizes[i] << " (symbol '" << shipSymbols[i] << "')\n";
 
         while (!placed)
         {
-            cout << "Ingresa fila inicial (A-J): ";
+            cout << "Enter starting row (A-J): ";
             char rowChar;
             cin >> rowChar;
             row = toupper(rowChar) - 'A';
 
-            cout << "Ingresa columna inicial (1-10): ";
+            cout << "Enter starting column (1-10): ";
             cin >> col;
-            col -= 1; // Para índice 0-based
+            col -= 1;
 
-            cout << "Dirección (H para horizontal, V para vertical): ";
+            cout << "Direction (H for horizontal, V for vertical): ";
             cin >> direction;
             direction = toupper(direction);
 
             if (row < 0 || row >= 10 || col < 0 || col >= 10)
             {
-                cout << "Coordenadas inválidas. Intenta de nuevo.\n";
+                cout << "Invalid coordinates. Try again.\n";
                 continue;
             }
 
             if (direction != 'H' && direction != 'V')
             {
-                cout << "Dirección inválida. Usa H o V.\n";
+                cout << "Invalid direction. Use H or V.\n";
                 continue;
             }
 
@@ -117,7 +115,7 @@ void placeShips(char board[10][10])
 
             if (!placed)
             {
-                cout << "No se pudo colocar el barco ahí. Intenta otra posición.\n";
+                cout << "Cannot place the ship there. Try a different position.\n";
             }
             else
             {
@@ -126,11 +124,12 @@ void placeShips(char board[10][10])
         }
     }
 }
+
 bool hasLost(char board[10][10])
 {
     for (int i = 0; i < 10; ++i)
         for (int j = 0; j < 10; ++j)
-            if (board[i][j] == 'B') // ← si queda una parte de barco viva...
-                return false;       // ...entonces no ha perdido aún
-    return true;                    // No quedan barcos: ¡perdió!
+            if (board[i][j] == 'B')
+                return false;
+    return true;
 }

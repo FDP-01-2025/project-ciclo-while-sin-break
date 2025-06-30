@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void checkAchievements(const string &currentPlayer, bool hit, int hit_consecutive, int turn, bool playerwin, bool playerlose, int ships_destroye)
+void checkAchievements(const string& currentPlayer ,bool hit, int hit_consecutive, int turn, bool playerwin, bool playerlose, int ships_destroye)
 {
     cout << "\n--- Achievements unlocked ---\n";
 
