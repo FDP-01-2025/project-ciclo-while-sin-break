@@ -1,10 +1,10 @@
 #include "src/board.h"
 #include "src/multiplayer.h"
 #include "src/save_load.h"
+#include "src/music.h" // Music header
 #include <iostream>
 using namespace std;
 
-// Prototipo si no está declarado
 void continueMultiplayer(char board1[10][10], char board2[10][10],
                         char view1[10][10], char view2[10][10],
                         string name1, string name2, int turn);
@@ -12,6 +12,8 @@ void continueMultiplayer(char board1[10][10], char board2[10][10],
 int main() {
     int options;
     bool exitGame = false;
+
+    playMenuMusic(); // Play menu music
 
     while (!exitGame)
     {
@@ -24,10 +26,13 @@ int main() {
 
         switch (options) {
             case 1:
+                stopMusic();
                 startMultiplayer();
+                playMenuMusic();
                 break;
 
             case 2: {
+                stopMusic();
                 char board1[10][10], board2[10][10];
                 char view1[10][10], view2[10][10];
                 string name1, name2;
@@ -36,6 +41,7 @@ int main() {
                 load_Game(board1, board2, view1, view2, name1, name2, turn);
                 cout << "\nLoaded game for " << name1 << " and " << name2 << "." << endl;
                 continueMultiplayer(board1, board2, view1, view2, name1, name2, turn);
+                playMenuMusic();
                 break;
             }
 
@@ -47,10 +53,11 @@ int main() {
             default:
                 cout << "Invalid option, try again." << endl;
                 cin.clear();
-                cin.ignore(1000, '\n');  // <-- limpia buffer sin usar limits
+                cin.ignore(1000, '\n');
                 break;
         }
     }
 
+    stopMusic();
     return 0;
 }

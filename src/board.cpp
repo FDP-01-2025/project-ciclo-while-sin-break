@@ -15,19 +15,38 @@ void Initializeboard(char board[10][10])
 
 void displayboard(const char board[10][10])
 {
-    cout << "  ";
+    cout << "\033[37m  "; // Letras de las columnas en blanco
     for (int col = 0; col < 10; col++)
     {
         cout << col + 1 << "  ";
     }
-    cout << endl;
+    cout << "\033[0m" << endl;
 
     for (int row = 0; row < 10; row++)
     {
-        cout << char('A' + row) << " ";
+        cout << "\033[37m" << char('A' + row) << " \033[0m"; // Letras de filas en blanco
         for (int col = 0; col < 10; col++)
         {
-            cout << board[row][col] << "  ";
+            if (board[row][col] == 'B')
+            {
+                cout << "\033[34m" << board[row][col] << "  \033[0m"; // Azul para barcos (si decides mostrarlos)
+            }
+            else if (board[row][col] == 'X')
+            {
+                cout << "\033[32m" << board[row][col] << "  \033[0m"; // Verde para aciertos
+            }
+            else if (board[row][col] == 'O')
+            {
+                cout << "\033[31m" << board[row][col] << "  \033[0m"; // Rojo para fallos
+            }
+            else if (board[row][col] == '-')
+            {
+                cout << "\033[34m" << board[row][col] << "  \033[0m"; // Azul para el agua
+            }
+            else
+            {
+                cout << board[row][col] << "  "; // Cualquier otro símbolo normal
+            }
         }
         cout << endl;
     }

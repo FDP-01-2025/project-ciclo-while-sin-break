@@ -3,73 +3,119 @@
 #include "save_load.h"
 #include "board.h"
 #include "shot.h"
+#include "music.h"  // Music functions
 #include <iostream>
 using namespace std;
 
 void startMultiplayer()
 {
+    playCalmMusic();  // Play calm music at start of match
+
     char player1Board[10][10], player2Board[10][10];
     char viewBoard1[10][10], viewBoard2[10][10];
     string name1, name2;
     int turn = 1;
 
-    cout << "Do you want to load a saved game? (Y/N): ";
-    char answer;
-    cin >> answer;
+    cout << "Player 1 name: ";
+    cin >> name1;
+    cout << "Player 2 name: ";
+    cin >> name2;
 
-    if (toupper(answer) == 'Y')
+    Initializeboard(player1Board);
+    Initializeboard(player2Board);
+    Initializeboard(viewBoard1);
+    Initializeboard(viewBoard2);
+
+    cout << name1 << ", place your ships\n";
+    placeShips(player1Board);
+
+    cout << name2 << ", place your ships\n";
+    placeShips(player2Board);
+
+    bool gameOver = false;
+    int hitConsecutive1 = 0, hitConsecutive2 = 0;
+
+    while (!gameOver)
     {
-        load_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-        cout << "Game loaded.\n";
-    }
-    else
-    {
-        cout << "Player 1 name: ";
-        cin >> name1;
-        cout << "Player 2 name: ";
-        cin >> name2;
+        string currentPlayer;
+        char (*myBoard)[10];
+        char (*enemyBoard)[10];
+        char (*myView)[10];
+        int *myConsecutiveHits;
 
-        Initializeboard(player1Board);
-        Initializeboard(player2Board);
-        Initializeboard(viewBoard1);
-        Initializeboard(viewBoard2);
+        if (turn % 2 != 0)
+        {
+            currentPlayer = name1;
+            myBoard = player1Board;
+            enemyBoard = player2Board;
+            myView = viewBoard1;
+            myConsecutiveHits = &hitConsecutive1;
+        }
+        else
+        {
+            currentPlayer = name2;
+            myBoard = player2Board;
+            enemyBoard = player1Board;
+            myView = viewBoard2;
+            myConsecutiveHits = &hitConsecutive2;
+        }
 
-        cout << name1 << ", place your ships:\n";
-        placeShips(player1Board);
+        int shipsLeft = 0;
+        for (int i = 0; i < 10; i++)
+            for (int j = 0; j < 10; j++)
+                if (enemyBoard[i][j] == 'B')
+                    shipsLeft++;
 
-        cout << name2 << ", place your ships:\n";
-        placeShips(player2Board);
-    }
-
-    bool game_Over = false;
-    int hit_consecutive1 = 0, hit_consecutive2 = 0;
-
-    while (!game_Over)
-    {
-        string currentPlayer = (turn % 2 != 0) ? name1 : name2;
-        char (*myBoard)[10] = (turn % 2 != 0) ? player1Board : player2Board;
-        char (*enemyBoard)[10] = (turn % 2 != 0) ? player2Board : player1Board;
-        char (*myView)[10] = (turn % 2 != 0) ? viewBoard1 : viewBoard2;
-        int &myConsecutiveHits = (turn % 2 != 0) ? hit_consecutive1 : hit_consecutive2;
+        if (shipsLeft == 1)
+        {
+            playSuspenseMusic();  // Switch to suspense music
+        }
 
         cout << "\n" << currentPlayer << "'s turn (Turn #" << turn << ")\n";
         displayboard(myView);
 
-        int row, col;
         string input;
-
-        cout << "Enter coordinates (e.g. 3 5) or 'G' to save and exit: ";
+        cout << "Enter coordinates (e.g. G5) or Z to save and exit: ";
         cin >> input;
 
-        if (toupper(input[0]) == 'G')
+        if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
         {
             save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-            cout << "Game saved.\n";
+            cout << "Game saved. Returning to menu.\n";
+            stopMusic();
             return;
         }
 
-        row = stoi(input);
-        cin >> col;
+        if (input.length() < 2 || input.length() > 3)
+        {
+            cout << "Invalid input length. Try again.\n";
+            continue;
+        }
+
+        char rowChar = toupper(input[0]);
+        if (rowChar < 'A' || rowChar > 'J')
+        {
+            cout << "Invalid row. Use letters A-J.\n";
+            continue;
+        }
+        int row = rowChar - 'A';
+
+        int col;
+        try
+        {
+            col = stoi(input.substr(1)) - 1;
+        }
+        catch (...)
+        {
+            cout << "Invalid column number.\n";
+            continue;
+        }
+
+        if (col < 0 || col > 9)
+        {
+            cout << "Column out of range. Use numbers 1-10.\n";
+            continue;
+        }
 
         bool hit = makeshot(enemyBoard, row, col);
         myView[row][col] = hit ? 'X' : 'O';
@@ -77,24 +123,24 @@ void startMultiplayer()
         if (hit)
         {
             cout << "Hit!\n";
-            myConsecutiveHits++;
+            (*myConsecutiveHits)++;
         }
         else
         {
             cout << "Miss...\n";
-            myConsecutiveHits = 0;
+            *myConsecutiveHits = 0;
         }
 
         bool playerWin = hasLost(enemyBoard);
-        bool playerLose = hasLost(myBoard);
         int shipsDestroyed = 0;
 
-        checkAchievements(currentPlayer, hit, myConsecutiveHits, turn, playerWin, playerLose, shipsDestroyed);
+        checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed);
 
         if (playerWin)
         {
             cout << currentPlayer << " wins the game!\n";
-            game_Over = true;
+            stopMusic();
+            gameOver = true;
         }
 
         turn++;
@@ -105,35 +151,92 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
                          char viewBoard1[10][10], char viewBoard2[10][10],
                          string name1, string name2, int turn)
 {
-    bool game_Over = false;
-    int hit_consecutive1 = 0, hit_consecutive2 = 0;
+    playCalmMusic();  // Calm music when continuing a saved game
 
-    while (!game_Over)
+    bool gameOver = false;
+    int hitConsecutive1 = 0, hitConsecutive2 = 0;
+
+    while (!gameOver)
     {
-        string currentPlayer = (turn % 2 != 0) ? name1 : name2;
-        char (*myBoard)[10] = (turn % 2 != 0) ? player1Board : player2Board;
-        char (*enemyBoard)[10] = (turn % 2 != 0) ? player2Board : player1Board;
-        char (*myView)[10] = (turn % 2 != 0) ? viewBoard1 : viewBoard2;
-        int &myConsecutiveHits = (turn % 2 != 0) ? hit_consecutive1 : hit_consecutive2;
+        string currentPlayer;
+        char (*myBoard)[10];
+        char (*enemyBoard)[10];
+        char (*myView)[10];
+        int *myConsecutiveHits;
+
+        if (turn % 2 != 0)
+        {
+            currentPlayer = name1;
+            myBoard = player1Board;
+            enemyBoard = player2Board;
+            myView = viewBoard1;
+            myConsecutiveHits = &hitConsecutive1;
+        }
+        else
+        {
+            currentPlayer = name2;
+            myBoard = player2Board;
+            enemyBoard = player1Board;
+            myView = viewBoard2;
+            myConsecutiveHits = &hitConsecutive2;
+        }
+
+        int shipsLeft = 0;
+        for (int i = 0; i < 10; i++)
+            for (int j = 0; j < 10; j++)
+                if (enemyBoard[i][j] == 'B')
+                    shipsLeft++;
+
+        if (shipsLeft == 1)
+        {
+            playSuspenseMusic();
+        }
 
         cout << "\n" << currentPlayer << "'s turn (Turn #" << turn << ")\n";
         displayboard(myView);
 
-        int row, col;
         string input;
-
-        cout << "Enter coordinates (e.g. 3 5) or 'G' to save and exit: ";
+        cout << "Enter coordinates (e.g. G5) or Z to save and exit: ";
         cin >> input;
 
-        if (toupper(input[0]) == 'G')
+        if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
         {
             save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-            cout << "Game saved.\n";
+            cout << "Game saved. Returning to menu.\n";
+            stopMusic();
             return;
         }
 
-        row = stoi(input);
-        cin >> col;
+        if (input.length() < 2 || input.length() > 3)
+        {
+            cout << "Invalid input length. Try again.\n";
+            continue;
+        }
+
+        char rowChar = toupper(input[0]);
+        if (rowChar < 'A' || rowChar > 'J')
+        {
+            cout << "Invalid row. Use letters A-J.\n";
+            continue;
+        }
+        int row = rowChar - 'A';
+
+        int col;
+        try
+        {
+            col = stoi(input.substr(1)) - 1;
+        }
+        catch (...)
+        {
+            cout << "Invalid column number.\n";
+            continue;
+        }
+
+        if (col < 0 || col > 9)
+        {
+            cout << "Column out of range. Use numbers 1-10.\n";
+            continue;
+        }
 
         bool hit = makeshot(enemyBoard, row, col);
         myView[row][col] = hit ? 'X' : 'O';
@@ -141,24 +244,24 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         if (hit)
         {
             cout << "Hit!\n";
-            myConsecutiveHits++;
+            (*myConsecutiveHits)++;
         }
         else
         {
             cout << "Miss...\n";
-            myConsecutiveHits = 0;
+            *myConsecutiveHits = 0;
         }
 
         bool playerWin = hasLost(enemyBoard);
-        bool playerLose = hasLost(myBoard);
         int shipsDestroyed = 0;
 
-        checkAchievements(currentPlayer, hit, myConsecutiveHits, turn, playerWin, playerLose, shipsDestroyed);
+        checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed);
 
         if (playerWin)
         {
             cout << currentPlayer << " wins the game!\n";
-            game_Over = true;
+            stopMusic();
+            gameOver = true;
         }
 
         turn++;
