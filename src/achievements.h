@@ -3,12 +3,17 @@
 #include <iostream>
 using namespace std;
 
-
-void checkAchievements(const string& currentPlayer, bool hit, int hit_consecutive, int turn,
-                       bool playerwin, bool playerlose, int ships_destroyed);
-                        /*Se utilizaran estas variables para poder asignar los
-                       siguientes logros (se han especificado en el documento):
-                       ● “Francotirador”: 5 aciertos seguidos.
-                       ● “Invicto”: ganar sin perder un solo barco.
-                       ● “Desastre total”: perder en menos de 10 turnos.*/
-#endif 
+void checkAchievements(const string &currentPlayer, bool hit, int hit_consecutive, int turn,
+                       bool playerwin, bool playerlose, int ships_destroyed, int ship_size);
+/*
+Se utiliza para verificar si se desbloquean logros durante la partida.
+ playerName: nombre del jugador actual
+ hit: true si el último disparo fue un acierto
+ hit_consecutive: cantidad de aciertos consecutivos
+ turn: numero de turno actual
+ playerwin: true si el jugador gano
+ playerlose: true si el jugador perdio.
+ shipsDestroyed: cantidad de barcos destruidos por el jugador
+ ship_size: tamaño del barco destruido
+*/
+#endif
