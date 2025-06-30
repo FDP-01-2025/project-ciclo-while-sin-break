@@ -1,7 +1,7 @@
 #ifndef ACHIEVEMENTS
 #define ACHIEVEMENTS
 
-void checkAchievements(bool hit, int hit_consecutive, int turn, bool playerwin, bool playerlose,
+void checkAchievements(const string& currentPlayer ,bool hit, int hit_consecutive, int turn, bool playerwin, bool playerlose,
                        int ships_destroye); /*Se utilizaran estas variables para poder asignar los
                        siguientes logros (se han especificado en el documento):
                        ● “Francotirador”: 5 aciertos seguidos.
