@@ -3,47 +3,48 @@
 #include <iostream>
 using namespace std;
 
-//g++ main.cpp src/board.cpp src/multiplayer.cpp -o juego && juego
+// g++ main.cpp src/board.cpp src/multiplayer.cpp -o juego && juego
 
-
-int main(){
+int main() {
     int options;
-    char board[10][10];
+    bool exitGame = false;
+while (!exitGame)
+{
+    
 
-    Initializeboard(board);
-    displayboard(board);
-    placeShips(board);
-    hasLost(board);
 
-    startMultiplayer();
-
-    cout <<"Las opciones de juego:" << endl;
-    cout << "1. Jugar" <<endl;
-    cout << "2. Multijugador" <<endl;
-    cout << "3. Historial de partida" <<endl;
-    cout << "4. Logros" <<endl;
+    cout << "Game options" << endl;
+    cout << "1. New Multiplayer game" << endl;
+    cout << "2. Load Saved Game" << endl;
+    cout << "3. Exit the game" << endl;
     cin >> options;
 
-    switch (options)
-    {
+    switch (options) {
     case 1:
+        startMultiplayer();
         break;
 
-    case 2:
-    break;
+    case 2: {
+        char board1[10][10], board2[10][10];
+        char view1[10][10], view2[10][10];
+        string name1, name2;
+        int turn;
 
-    case 3: 
-    break;
-
-    case 4:
-    break;
-    
-    default: 
-    cout << "No se encuentra dentro del menu" << endl;
+        load_Game(board1, board2, view1, view2, name1, name2, turn);
+        cout << "\nLoaded game for " << name1 << " and " << name2 << "." << endl;
+        continueMultiplayer(board1, board2, view1, view2, name1, name2, turn);
         break;
+        }
+
+        case 3:
+        cout << "Leaving the game" << endl;
+        break;
+
+        default:
+            cout << "Invalid option, try again." << endl;
+            break;
+
+        }
+        }
+            return 0;
     }
-    
-
-
-    return 0;
-}
