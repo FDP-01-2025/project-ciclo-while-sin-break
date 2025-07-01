@@ -3,13 +3,13 @@
 #include "save_load.h"
 #include "board.h"
 #include "shot.h"
-#include "music.h"  // Music functions
+#include "music.h" // Music functions
 #include <iostream>
 using namespace std;
 
 void startMultiplayer()
 {
-    playCalmMusic();  // Play calm music at start of match
+    playCalmMusic(); // Play calm music at start of match
 
     char player1Board[10][10], player2Board[10][10];
     char viewBoard1[10][10], viewBoard2[10][10];
@@ -68,10 +68,11 @@ void startMultiplayer()
 
         if (shipsLeft == 1)
         {
-            playSuspenseMusic();  // Switch to suspense music
+            playSuspenseMusic(); // Switch to suspense music
         }
 
-        cout << "\n" << currentPlayer << "'s turn (Turn #" << turn << ")\n";
+        cout << "\n"
+             << currentPlayer << "'s turn (Turn #" << turn << ")\n";
         displayboard(myView);
 
         string input;
@@ -132,9 +133,11 @@ void startMultiplayer()
         }
 
         bool playerWin = hasLost(enemyBoard);
+
+        int shipSize = 0;
         int shipsDestroyed = 0;
 
-        checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed);
+        checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed, shipSize);
 
         if (playerWin)
         {
@@ -151,7 +154,7 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
                          char viewBoard1[10][10], char viewBoard2[10][10],
                          string name1, string name2, int turn)
 {
-    playCalmMusic();  // Calm music when continuing a saved game
+    playCalmMusic(); // Calm music when continuing a saved game
 
     bool gameOver = false;
     int hitConsecutive1 = 0, hitConsecutive2 = 0;
@@ -192,7 +195,8 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
             playSuspenseMusic();
         }
 
-        cout << "\n" << currentPlayer << "'s turn (Turn #" << turn << ")\n";
+        cout << "\n"
+             << currentPlayer << "'s turn (Turn #" << turn << ")\n";
         displayboard(myView);
 
         string input;
@@ -254,8 +258,9 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
 
         bool playerWin = hasLost(enemyBoard);
         int shipsDestroyed = 0;
+        int shipSize = 0;
 
-        checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed);
+        checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed, shipSize);
 
         if (playerWin)
         {
