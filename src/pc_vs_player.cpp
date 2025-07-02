@@ -62,7 +62,7 @@ void playerVsPC(){
         int row, col;
         if (playerTurn){
             string input;
-            cout<<"Enter coordinates (e.g. G5) or Z to save and exit: ";
+            cout<<"Enter coordinates (e.g   ) or Z to save and exit: ";
             cin>>input;
 
             if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z')){
