@@ -147,8 +147,8 @@ void placeShips(char board[10][10])
 }
 
 void placeShipRandom(char board[10][10]){
-    int shipSizesR = {5, 2, 2, 1, 1};
-    char shipRSymbols = {'B', 'B', 'B', 'B', 'B'};
+    int shipSizesR[] = {5, 2, 2, 1, 1};
+    char shipRSymbols[] = {'B', 'B', 'B', 'B', 'B'};
 
     srand(time(0));
 
