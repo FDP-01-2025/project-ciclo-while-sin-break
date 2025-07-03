@@ -3,6 +3,7 @@
 #include "src/save_load.h"
 #include "src/music.h" // Music header
 #include "src/pc_vs_player.h"
+#include "language.h"
 #include <iostream>
 using namespace std;
 
@@ -26,7 +27,8 @@ int main() {
         cout << "1. Play new game" << endl;
         cout << "2. New Multiplayer game" << endl;
         cout << "3. Load Saved Game" << endl;
-        cout << "4. Exit the game" << endl;
+        cout << "4. Choose Language" << endl;
+        cout << "5. Exit the game" << endl;
         cout << "Choose an option: ";
         cin >> options;
 
@@ -37,6 +39,7 @@ int main() {
                 //har viewBoardPlayer[10][10], viewBoardPc[10][10];
                 playerVsPC();
                 //ContinuePcVsPlayer()
+                playMenuMusic();
                 break;
             }
 
@@ -68,6 +71,11 @@ int main() {
             }
 
             case 4:
+                playCalmMusic();
+                setLanguage();
+                playMenuMusic();
+
+            case 5:
                 cout << "Leaving the game" << endl;
                 exitGame = true;
                 break;
