@@ -16,9 +16,9 @@ void startMultiplayer()
     string name1, name2;
     int turn = 1;
 
-    cout << "Player 1 name: ";
+    cout <<getText(name1);
     cin >> name1;
-    cout << "Player 2 name: ";
+    cout << getText(name2);
     cin >> name2;
 
     Initializeboard(player1Board);
@@ -26,10 +26,10 @@ void startMultiplayer()
     Initializeboard(viewBoard1);
     Initializeboard(viewBoard2);
 
-    cout << name1 << ", place your ships\n";
+    cout << name1 << getText(p_ships)<<endl;
     placeShips(player1Board);
 
-    cout << name2 << ", place your ships\n";
+    cout << name2 << getText(p_ships)<<endl;
     placeShips(player2Board);
 
     bool gameOver = false;
@@ -72,31 +72,31 @@ void startMultiplayer()
         }
 
         cout << "\n"
-             << currentPlayer << "'s turn (Turn #" << turn << ")\n";
+             << currentPlayer << getText(turn_)<< turn << ")"<<endl;
         displayboard(myView);
 
         string input;
-        cout << "Enter coordinates (e.g. G5) or Z to save and exit: ";
+        cout << getText(coordinates)<<endl;
         cin >> input;
 
         if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
         {
             save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-            cout << "Game saved. Returning to menu.\n";
+            cout << getText(g_c);
             stopMusic();
             return;
         }
 
         if (input.length() < 2 || input.length() > 3)
         {
-            cout << "Invalid input length. Try again.\n";
+            cout << getText(input_lng)<<endl;
             continue;
         }
 
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
-            cout << "Invalid row. Use letters A-J.\n";
+            cout << getText(invalid_r);
             continue;
         }
         int row = rowChar - 'A';
@@ -108,13 +108,13 @@ void startMultiplayer()
         }
         catch (...)
         {
-            cout << "Invalid column number.\n";
+            cout << getText(invalid_c)<<endl;
             continue;
         }
 
         if (col < 0 || col > 9)
         {
-            cout << "Column out of range. Use numbers 1-10.\n";
+            cout << getText(col_rang)<<endl;
             continue;
         }
 
@@ -123,12 +123,12 @@ void startMultiplayer()
 
         if (hit)
         {
-            cout << "Hit!\n";
+            cout << getText(hit)<<endl;
             (*myConsecutiveHits)++;
         }
         else
         {
-            cout << "Miss...\n";
+            cout << getText(miss)<<endl;
             *myConsecutiveHits = 0;
         }
 
@@ -141,7 +141,7 @@ void startMultiplayer()
 
         if (playerWin)
         {
-            cout << currentPlayer << " wins the game!\n";
+            cout << currentPlayer << getText(win)<<endl;
             stopMusic();
             gameOver = true;
         }
@@ -196,31 +196,31 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         }
 
         cout << "\n"
-             << currentPlayer << "'s turn (Turn #" << turn << ")\n";
+             << currentPlayer << getText(turn_)<< turn << ")\n";
         displayboard(myView);
 
         string input;
-        cout << "Enter coordinates (e.g. G5) or Z to save and exit: ";
+        cout << getText(coordinates);
         cin >> input;
 
         if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
         {
             save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-            cout << "Game saved. Returning to menu.\n";
+            cout << getText(g_c)<<endl;
             stopMusic();
             return;
         }
 
         if (input.length() < 2 || input.length() > 3)
         {
-            cout << "Invalid input length. Try again.\n";
+            cout << getText(input_lng)<<endl;
             continue;
         }
 
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
-            cout << "Invalid row. Use letters A-J.\n";
+            cout << getText(invalid_r)<<endl;
             continue;
         }
         int row = rowChar - 'A';
@@ -232,13 +232,13 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         }
         catch (...)
         {
-            cout << "Invalid column number.\n";
+            cout << getText(invalid_c)<<endl;
             continue;
         }
 
         if (col < 0 || col > 9)
         {
-            cout << "Column out of range. Use numbers 1-10.\n";
+            cout << getText(col_rang)<<endl;
             continue;
         }
 
@@ -247,12 +247,12 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
 
         if (hit)
         {
-            cout << "Hit!\n";
+            cout <<getText(hit)<<endl;
             (*myConsecutiveHits)++;
         }
         else
         {
-            cout << "Miss...\n";
+            cout << getText(miss)<<endl;
             *myConsecutiveHits = 0;
         }
 
@@ -264,7 +264,7 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
 
         if (playerWin)
         {
-            cout << currentPlayer << " wins the game!\n";
+            cout << currentPlayer << getText(win)<<endl;
             stopMusic();
             gameOver = true;
         }
