@@ -72,9 +72,9 @@ static std::unordered_map<std::string, std::string> spanish = {
 
     //pc-vs_player
     {"name", "Inrtroduzca su nombre de jugador: "},
-    {"p_ships", "Coloque sus barcos"},
+    {"p_ships", ", coloque sus barcos"},
     {"pc_ships", "La computadora esta colocando sus barcos..."},
-    {"turn_", "'s turno (Turon #"},
+    {"turn_", "'s turno (Turno #"},
     {"coordinates", "Introduzca coordenadas (e.g) o Z para guardar y salir: "},
     {"g_c", "Partida guardada. Regresando al menu..."},
     {"input_lng", "Longitud de entrada no valida. Intenta de nuevo"},
