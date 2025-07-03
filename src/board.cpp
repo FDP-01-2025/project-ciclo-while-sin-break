@@ -103,11 +103,11 @@ void placeShips(char board[10][10])
         char direction;
         bool placed = false;
 
-        cout << "Placing ship of size " << shipSizes[i] << " (symbol '" << shipSymbols[i] << "')\n";
+        cout << getText(ship_size)<< shipSizes[i] << getText(sym)<< shipSymbols[i] << "')\n";
 
         while (!placed)
         {
-            cout << "Enter starting coordinates (e.g. A1): ";
+            cout <<getText(e_starting);
             char rowChar;
             cin >> rowChar;
             row = toupper(rowChar) - 'A';
@@ -116,19 +116,19 @@ void placeShips(char board[10][10])
             cin >> col;
             col -= 1;
 
-            cout << "Direction (H for horizontal, V for vertical): ";
+            cout << getText(direction);
             cin >> direction;
             direction = toupper(direction);
 
             if (row < 0 || row >= 10 || col < 0 || col >= 10)
             {
-                cout << "Invalid coordinates. Try again.\n";
+                cout << getText(invali_coor);
                 continue;
             }
 
             if (direction != 'H' && direction != 'V')
             {
-                cout << "Invalid direction. Use H or V.\n";
+                cout <<getText(invali_dire);
                 continue;
             }
 
@@ -136,7 +136,7 @@ void placeShips(char board[10][10])
 
             if (!placed)
             {
-                cout << "Cannot place the ship there. Try a different position.\n";
+                cout <<getText(no_place);
             }
             else
             {

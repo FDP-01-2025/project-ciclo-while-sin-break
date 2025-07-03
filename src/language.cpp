@@ -64,7 +64,7 @@ static std::unordered_map<std::string, std::string> spanish = {
     //board
     {"ship_size", "Colocando barcos de tamanno "},
     {"sym", "(Simbolo '"},
-    {"e_starting", "Introduzca las coordenadas de inicio (e.g): "},
+    {"e_starting", "Introduzca las coordenadas de inicio (e.g. A1): "},
     {"direction", "Direccion (H para horizontal, V para vertical: "},
     {"invali_coor", "Coordinadas invalidas. Intente nuevamente"},
     {"invali_dire", "Direccion invalida. Use H o V"},
