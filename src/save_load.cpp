@@ -60,11 +60,11 @@ void save_Game(const char board1[10][10], const char board2[10][10],
         }
 
         file.close();
-        cout << "Game saved successfully :)" << endl;
+        cout << getText(g_cS)<< endl;
     }
     else 
     {
-        cout << "Error: could not save the game :(" << endl;
+        cout << getText(error) << endl;
     }
 }
 
@@ -80,7 +80,7 @@ void load_Game(char board1[10][10], char board2[10][10],
         string header;
         getline(file, header);
         if (header != SAVE_HEADER) {
-            cout << "Error: Save file corrupted or incompatible." << endl;
+            cout << getText(errorS)<< endl;
             file.close();
             return;
         }
@@ -134,10 +134,10 @@ void load_Game(char board1[10][10], char board2[10][10],
         }
 
         file.close();
-        cout << "Game loaded successfully! Ready to continue." << endl;
+        cout << getText(gameLo)<< endl;
     }
     else 
     {
-        cout << "No saved game found :(" << endl;
+        cout <<getText(noo_saved)<< endl;
     }
 }

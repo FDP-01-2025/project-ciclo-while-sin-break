@@ -49,6 +49,17 @@ static std::unordered_map<std::string, std::string> english = {
     {"undefeated", "Undefeated: to win without losing a single ship"},
     {"disaster", "Total disaster: losing in less than 10 turns"},
     {"lucky", "Lucky Shot: Destroy a ship whith a sigle shot."}
+
+    //save_load
+    {"g_cS", "Game saved succesfully: "},
+    {"error", "Error: could not saved the game"},
+    {"errorS", "Error: save file corrupted or incompatible"},
+    {"gameLo", "Game load succesfully! Ready to continue. "},
+    {"noo_saved", "No saved game found :("},
+
+    //shot
+    {"shot_po", "You already shot at this position. Try again."}
+    
     
 };
 
@@ -98,6 +109,17 @@ static std::unordered_map<std::string, std::string> spanish = {
     {"undefeated", "Invicto: por ganar sin perder ni un barco"},
     {"disaster", "Desastre total: perdiendo en menos de 10 turnos"},
     {"lucky", "Golpe de suerte: Destruye un barco con un solo disparo"}
+
+    //save_load
+    {"g_cS", "Juego guardado correctamente :)"},
+    {"error", "Error: no se pudo guardar el juego"},
+    {"errorS", "Error: Archivo guardado dannado o incompatible"},
+    {"gameLo", "Juego guardado correctamente. Listo para comenzar"},
+    {"noo_saved", "No se encontro ningun juego guardado"},
+
+     //shot
+    {"shot_po", "Ya haz disparado a esa posicion. Intenta otra vez"}
+
 };
 
 void setLanguage(Language lang) {
