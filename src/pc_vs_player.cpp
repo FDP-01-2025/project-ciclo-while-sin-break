@@ -4,6 +4,7 @@
 #include "shot.h"
 #include "save_load.h"
 #include "music.h" // Music header
+#include "language.h"
 #include <iostream>
 #include <cstdlib> //Esta funcion ayuda a elegir random la posicion de los barcos
 #include <ctime>
@@ -163,7 +164,7 @@ void  ContinuePcVsPlayer(char playerBoard[10][10], char pcBoard[10][10],
 
         if (shipsLeft == 1) playSuspenseMusic();
 
-        std::cout<<endl<<currentPlayer<< getText(turn-)<<turn<<")"<<endl;
+        std::cout<<endl<<currentPlayer<< getText(turn_)<<turn<<")"<<endl;
         displayboard(myView);
 
         int row, col;
@@ -234,7 +235,7 @@ void  ContinuePcVsPlayer(char playerBoard[10][10], char pcBoard[10][10],
         checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, true,shipsDestroyed, shipSize);
 
         if (playerWin){
-            std::cout<<currentPlayer<<getText(wins)<<endl;
+            std::cout<<currentPlayer<<getText(win)<<endl;
             stopMusic();
             gameOver = true;
         }

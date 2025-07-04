@@ -4,6 +4,7 @@
 #include "board.h"
 #include "shot.h"
 #include "music.h" // Music functions
+#include "language.h"
 #include <iostream>
 using namespace std;
 

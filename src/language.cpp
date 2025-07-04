@@ -1,7 +1,7 @@
 #include "language.h"
 #include <unordered_map>
 
-static Language currentLanguage = ENGLISH;
+Language currentLanguage = ENGLISH;
 
 static std::unordered_map<std::string, std::string> english = {
     //main menu
@@ -48,7 +48,7 @@ static std::unordered_map<std::string, std::string> english = {
     {"sniper", "Sniper: 5 hits in a row"},
     {"undefeated", "Undefeated: to win without losing a single ship"},
     {"disaster", "Total disaster: losing in less than 10 turns"},
-    {"lucky", "Lucky Shot: Destroy a ship whith a sigle shot."}
+    {"lucky", "Lucky Shot: Destroy a ship whith a sigle shot."},
 
     //save_load
     {"g_cS", "Game saved succesfully: "},
@@ -108,7 +108,7 @@ static std::unordered_map<std::string, std::string> spanish = {
     {"sniper", "Francotirador: 5 golpes en una fila"},
     {"undefeated", "Invicto: por ganar sin perder ni un barco"},
     {"disaster", "Desastre total: perdiendo en menos de 10 turnos"},
-    {"lucky", "Golpe de suerte: Destruye un barco con un solo disparo"}
+    {"lucky", "Golpe de suerte: Destruye un barco con un solo disparo"},
 
     //save_load
     {"g_cS", "Juego guardado correctamente :)"},

@@ -2,10 +2,17 @@
 #define LANGUAGE_H
 #include <string>
 
-enum Language {ENGLISH, SPANISH};
+#pragma once
+#include <string>
 
-void setLanguage(Language lang);
+enum Language {
+    ENGLISH,
+    SPANISH
+};
+
+extern Language currentLanguage;
 std::string getText(const std::string& key);
+void setLanguage(Language lang);
 
 
 

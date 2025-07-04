@@ -3,7 +3,7 @@
 #include "src/save_load.h"
 #include "src/music.h" // Music header
 #include "src/pc_vs_player.h"
-#include "language.h"
+#include "src/language.h"
 #include <iostream>
 using namespace std;
 
@@ -72,7 +72,7 @@ int main() {
 
             case 4:
                 playCalmMusic();
-                setLanguage();
+                setLanguage(Language lang);
                 playMenuMusic();
 
             case 5:
