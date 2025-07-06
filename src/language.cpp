@@ -5,7 +5,7 @@ Language currentLanguage = ENGLISH;
 
 static std::unordered_map<std::string, std::string> english = {
     //main menu
-    {"g_options", "Game options"},
+    {"g_options", "---Game options---"},
     {"pc_player", "1. Play new game"},
     {"multip", "2. Play multiplayer"},
     {"load_game", "3. Load game saved"},

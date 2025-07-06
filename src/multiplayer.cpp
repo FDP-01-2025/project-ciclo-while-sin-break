@@ -17,9 +17,9 @@ void startMultiplayer()
     string name1, name2;
     int turn = 1;
 
-    cout <<getText("name1");
+    cout <<getText("name1")<<endl;
     cin >> name1;
-    cout << getText("name2");
+    cout << getText("name2")<<endl;
     cin >> name2;
 
     Initializeboard(player1Board);
@@ -97,7 +97,7 @@ void startMultiplayer()
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
-            cout << getText("invalid_r");
+            cout << getText("invalid_r")<<endl;
             continue;
         }
         int row = rowChar - 'A';
@@ -197,11 +197,11 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         }
 
         cout << "\n"
-             << currentPlayer << getText("turn_")<< turn << ")\n";
+             << currentPlayer << getText("turn_")<< turn << ")"<<endl;
         displayboard(myView);
 
         string input;
-        cout << getText("coordinates");
+        cout << getText("coordinates")<<endl;
         cin >> input;
 
         if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))

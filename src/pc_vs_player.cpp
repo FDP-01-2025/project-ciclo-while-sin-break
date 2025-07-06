@@ -20,7 +20,7 @@ void playerVsPC(){
     int turn = 1;
     int hitConsecutivePlayer = 0, hitConsecutivePc = 0;
 
-    cout<<getText("name");
+    cout<<getText("name")<<endl;
     cin>>playerName;
 
     Initializeboard(playerBoard);
@@ -63,7 +63,7 @@ void playerVsPC(){
         int row, col;
         if (playerTurn){
             string input;
-            cout<<getText("coordinates");
+            cout<<getText("coordinates")<<endl;
             cin>>input;
 
             if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z')){
@@ -171,7 +171,7 @@ void  ContinuePcVsPlayer(char playerBoard[10][10], char pcBoard[10][10],
         std::string input;
 
         if (playerTurn){
-            std::cout<<getText("coordinates");
+            std::cout<<getText("coordinates")<<endl;
             std::cin>>input;
 
             if (input == "Z" || input == "z"){

@@ -12,7 +12,7 @@ void continueMultiplayer(char board1[10][10], char board2[10][10],
                         string name1, string name2, int turn);
 
 void ContinuePcVsPlayer(char playerBoard[10][10], char pcBoard[10][10],
-                        char viewBoardPlayer[10][10], char viewBoardPc[10][10],
+                        char viewBoardP layer[10][10], char viewBoardPc[10][10],
                         string playerName, int turn);
 
 int main() {

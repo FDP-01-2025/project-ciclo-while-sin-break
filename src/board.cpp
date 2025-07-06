@@ -112,7 +112,7 @@ void placeShips(char board[10][10])
 
         while (!placed)
         {
-            cout << getText("e_starting");
+            cout << getText("e_starting")<<endl;
             char rowChar;
             cin >> rowChar;
             rowChar = toupper(rowChar);
@@ -120,18 +120,18 @@ void placeShips(char board[10][10])
 
             row = rowChar - 'A';
 
-            cout << getText("e_column");
+            cout << getText("e_column")<<endl;
             cin >> col;
             cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la columna
 
-            cout << getText("direction");
+            cout << getText("direction")<<endl;
             cin >> direction;
             direction = toupper(direction);
             cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la dirección
 
             if (row < 0 || row >= 10 || col < 1 || col > 10)
             {
-                cout << getText("invali_coor");
+                cout << getText("invali_coor")<<endl;
                 continue;
             }
 
@@ -139,7 +139,7 @@ void placeShips(char board[10][10])
 
             if (direction != 'H' && direction != 'V')
             {
-                cout << getText("invali_dire");
+                cout << getText("invali_dire")<<endl;
                 continue;
             }
 
@@ -147,7 +147,7 @@ void placeShips(char board[10][10])
 
             if (!placed)
             {
-                cout << getText("no_place");
+                cout << getText("no_place")<<endl;
             }
             else
             {
