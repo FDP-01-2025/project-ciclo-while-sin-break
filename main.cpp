@@ -59,7 +59,7 @@ int main() {
                 int turn;
 
                 load_Game(board1, board2, view1, view2, name1, name2, turn);
-                cout << "\nLoaded game for " << name1 << " and " << name2 << "." << endl;
+                cout << getText("load_G")<< name1 << getText("and")<< name2 << "." << endl;
                 
                 if (name2 == "Computer") {
                     ContinuePcVsPlayer(board1, board2, view1, view2, name1, turn);
@@ -71,17 +71,30 @@ int main() {
             }
 
             case 4:
-                playCalmMusic();
-                setLanguage(Language lang);
-                playMenuMusic();
+            playCalmMusic();
+            {
+                int langChoice;
+                cout << "1. English"<<endl;
+                cout << "2. Spanish"<<endl;
+                cout << "Choose a language"<<endl;
+                cin >> langChoice;
+
+                if (langChoice == 2) {
+                    setLanguage(SPANISH);
+                } else {
+                    setLanguage(ENGLISH);
+                }
+            }
+            playMenuMusic();
+                break;
 
             case 5:
-                cout << "Leaving the game" << endl;
+                cout << getText("leav_g")<< endl;
                 exitGame = true;
                 break;
 
             default:
-                cout << "Invalid option, try again." << endl;
+                cout << getText("inv_op")<< endl;
                 cin.clear();
                 cin.ignore(1000, '\n');
                 break;

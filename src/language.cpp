@@ -12,6 +12,10 @@ static std::unordered_map<std::string, std::string> english = {
     {"language", "4. Choose language"},
     {"exit", "5. Exit game"},
     {"ch_op", "Choose an option: "},
+    {"leav_g", "Leaving the game..."},
+    {"inv_op", "invalid option. Try again"},
+    {"load_G", "Load gamed for "},
+    {"and", "and"},
 
     //board
     {"ship_size", "Placing ships of size "},
@@ -72,6 +76,11 @@ static std::unordered_map<std::string, std::string> spanish = {
     {"load_game", "3. Cargar partida guardada"},
     {"language", "4. Escoja idioma"},
     {"exit", "5. Salir del juego"},
+    {"ch_op", "Escoja una opcion"},
+    {"leav_g", "Saliendo del juego..."},
+    {"inv_op", "Opcion invalida. Intenta de nuevo"},
+    {"load_G", "Juego cargado por "},
+    {"and", " y "},
 
     //board
     {"ship_size", "Colocando barcos de tamanno "},
