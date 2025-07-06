@@ -11,6 +11,7 @@ static std::unordered_map<std::string, std::string> english = {
     {"load_game", "3. Load game saved"},
     {"language", "4. Choose language"},
     {"exit", "5. Exit game"},
+    {"ch_op", "Choose an option: "},
 
     //board
     {"ship_size", "Placing ships of size "},

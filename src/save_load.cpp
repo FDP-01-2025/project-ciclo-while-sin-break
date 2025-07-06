@@ -61,11 +61,11 @@ void save_Game(const char board1[10][10], const char board2[10][10],
         }
 
         file.close();
-        cout << getText(g_cS)<< endl;
+        cout << getText("g_cS")<< endl;
     }
     else 
     {
-        cout << getText(error) << endl;
+        cout << getText("error") << endl;
     }
 }
 
@@ -81,7 +81,7 @@ void load_Game(char board1[10][10], char board2[10][10],
         string header;
         getline(file, header);
         if (header != SAVE_HEADER) {
-            cout << getText(errorS)<< endl;
+            cout << getText("errorS")<< endl;
             file.close();
             return;
         }
@@ -135,10 +135,10 @@ void load_Game(char board1[10][10], char board2[10][10],
         }
 
         file.close();
-        cout << getText(gameLo)<< endl;
+        cout << getText("gameLo")<< endl;
     }
     else 
     {
-        cout <<getText(noo_saved)<< endl;
+        cout <<getText("noo_saved")<< endl;
     }
 }

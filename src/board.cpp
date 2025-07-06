@@ -104,11 +104,11 @@ void placeShips(char board[10][10])
         char direction;
         bool placed = false;
 
-        cout << getText(ship_size)<< shipSizes[i] << getText(sym)<< shipSymbols[i] << "')\n";
+        cout << getText("ship_size")<< shipSizes[i] << getText("sym")<< shipSymbols[i] << "')\n";
 
         while (!placed)
         {
-            cout <<getText(e_starting);
+            cout <<getText("e_starting");
             char rowChar;
             cin >> rowChar;
             row = toupper(rowChar) - 'A';
@@ -117,19 +117,19 @@ void placeShips(char board[10][10])
             cin >> col;
             col -= 1;
 
-            cout << getText(direction);
+            cout << getText("direction");
             cin >> direction;
             direction = toupper(direction);
 
             if (row < 0 || row >= 10 || col < 0 || col >= 10)
             {
-                cout << getText(invali_coor);
+                cout << getText("invali_coor");
                 continue;
             }
 
             if (direction != 'H' && direction != 'V')
             {
-                cout <<getText(invali_dire);
+                cout <<getText("invali_dire");
                 continue;
             }
 
@@ -137,7 +137,7 @@ void placeShips(char board[10][10])
 
             if (!placed)
             {
-                cout <<getText(no_place);
+                cout <<getText("no_place");
             }
             else
             {

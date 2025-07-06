@@ -17,9 +17,9 @@ void startMultiplayer()
     string name1, name2;
     int turn = 1;
 
-    cout <<getText(name1);
+    cout <<getText("name1");
     cin >> name1;
-    cout << getText(name2);
+    cout << getText("name2");
     cin >> name2;
 
     Initializeboard(player1Board);
@@ -27,10 +27,10 @@ void startMultiplayer()
     Initializeboard(viewBoard1);
     Initializeboard(viewBoard2);
 
-    cout << name1 << getText(p_ships)<<endl;
+    cout << name1 << getText("p_ships")<<endl;
     placeShips(player1Board);
 
-    cout << name2 << getText(p_ships)<<endl;
+    cout << name2 << getText("p_ships")<<endl;
     placeShips(player2Board);
 
     bool gameOver = false;
@@ -73,31 +73,31 @@ void startMultiplayer()
         }
 
         cout << "\n"
-             << currentPlayer << getText(turn_)<< turn << ")"<<endl;
+             << currentPlayer << getText("turn_")<< turn << ")"<<endl;
         displayboard(myView);
 
         string input;
-        cout << getText(coordinates)<<endl;
+        cout << getText("coordinates")<<endl;
         cin >> input;
 
         if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
         {
             save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-            cout << getText(g_c);
+            cout << getText("g_c");
             stopMusic();
             return;
         }
 
         if (input.length() < 2 || input.length() > 3)
         {
-            cout << getText(input_lng)<<endl;
+            cout << getText("input_lng")<<endl;
             continue;
         }
 
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
-            cout << getText(invalid_r);
+            cout << getText("invalid_r");
             continue;
         }
         int row = rowChar - 'A';
@@ -109,13 +109,13 @@ void startMultiplayer()
         }
         catch (...)
         {
-            cout << getText(invalid_c)<<endl;
+            cout << getText("invalid_c")<<endl;
             continue;
         }
 
         if (col < 0 || col > 9)
         {
-            cout << getText(col_rang)<<endl;
+            cout << getText("col_rang")<<endl;
             continue;
         }
 
@@ -124,12 +124,12 @@ void startMultiplayer()
 
         if (hit)
         {
-            cout << getText(hit)<<endl;
+            cout << getText("hit")<<endl;
             (*myConsecutiveHits)++;
         }
         else
         {
-            cout << getText(miss)<<endl;
+            cout << getText("miss")<<endl;
             *myConsecutiveHits = 0;
         }
 
@@ -142,7 +142,7 @@ void startMultiplayer()
 
         if (playerWin)
         {
-            cout << currentPlayer << getText(win)<<endl;
+            cout << currentPlayer << getText("win")<<endl;
             stopMusic();
             gameOver = true;
         }
@@ -197,31 +197,31 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         }
 
         cout << "\n"
-             << currentPlayer << getText(turn_)<< turn << ")\n";
+             << currentPlayer << getText("turn_")<< turn << ")\n";
         displayboard(myView);
 
         string input;
-        cout << getText(coordinates);
+        cout << getText("coordinates");
         cin >> input;
 
         if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
         {
             save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-            cout << getText(g_c)<<endl;
+            cout << getText("g_c")<<endl;
             stopMusic();
             return;
         }
 
         if (input.length() < 2 || input.length() > 3)
         {
-            cout << getText(input_lng)<<endl;
+            cout << getText("input_lng")<<endl;
             continue;
         }
 
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
-            cout << getText(invalid_r)<<endl;
+            cout << getText("invalid_r")<<endl;
             continue;
         }
         int row = rowChar - 'A';
@@ -233,13 +233,13 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         }
         catch (...)
         {
-            cout << getText(invalid_c)<<endl;
+            cout << getText("invalid_c")<<endl;
             continue;
         }
 
         if (col < 0 || col > 9)
         {
-            cout << getText(col_rang)<<endl;
+            cout << getText("col_rang")<<endl;
             continue;
         }
 
@@ -248,12 +248,12 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
 
         if (hit)
         {
-            cout <<getText(hit)<<endl;
+            cout <<getText("hit")<<endl;
             (*myConsecutiveHits)++;
         }
         else
         {
-            cout << getText(miss)<<endl;
+            cout << getText("miss")<<endl;
             *myConsecutiveHits = 0;
         }
 
@@ -265,7 +265,7 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
 
         if (playerWin)
         {
-            cout << currentPlayer << getText(win)<<endl;
+            cout << currentPlayer << getText("win")<<endl;
             stopMusic();
             gameOver = true;
         }

@@ -23,13 +23,13 @@ int main() {
 
     while (!exitGame)
     {
-        cout << "\nGame options" << endl;
-        cout << "1. Play new game" << endl;
-        cout << "2. New Multiplayer game" << endl;
-        cout << "3. Load Saved Game" << endl;
-        cout << "4. Choose Language" << endl;
-        cout << "5. Exit the game" << endl;
-        cout << "Choose an option: ";
+        cout << getText("g_options")<< endl;
+        cout << getText("pc_player")<< endl;
+        cout << getText("multip")<< endl;
+        cout << getText("load_game") << endl;
+        cout << getText("language")<< endl;
+        cout << getText("exit") << endl;
+        cout << getText("ch_op")<<endl;
         cin >> options;
 
         switch (options) {

@@ -9,7 +9,7 @@ bool makeshot(char board[10][10], int row, int col)
     // Verificamos si ya disparó ahí antes
     if (board[row][col] == 'X' || board[row][col] == 'O')
     {
-        cout << getText(shot_po) << endl;
+        cout << getText("shot_po") << endl;
         return false;
     }
 

@@ -12,7 +12,7 @@ void checkAchievements(const string &currentPlayer, bool hit, int hit_consecutiv
 
     if (hit_consecutive >= 5)
     {
-        cout << currentPlayer << getText(s"niper")<<endl;
+        cout << currentPlayer << getText("sniper")<<endl;
     }
 
     // Este logro se obtendra cuando un jugador gane sin que le hallan destruido un barco

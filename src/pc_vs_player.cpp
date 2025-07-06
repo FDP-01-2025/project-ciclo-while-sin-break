@@ -20,7 +20,7 @@ void playerVsPC(){
     int turn = 1;
     int hitConsecutivePlayer = 0, hitConsecutivePc = 0;
 
-    cout<<getText(name);
+    cout<<getText("name");
     cin>>playerName;
 
     Initializeboard(playerBoard);
@@ -28,10 +28,10 @@ void playerVsPC(){
     Initializeboard(viewBoardPlayer);
     Initializeboard(viewBoardPc);  
 
-    cout<<playerName<<getText(p_ships)<<endl;
+    cout<<playerName<<getText("p_ships")<<endl;
     placeShips(playerBoard);
 
-    cout<<getText(pc_ships)<<endl;
+    cout<<getText("pc_ships")<<endl;
     placeShipRandom(pcBoard);
 
     bool gameOver = false;
@@ -57,30 +57,30 @@ void playerVsPC(){
             playSuspenseMusic();
         }
 
-        cout<<endl<<currentPlayer<<getText(turn_)<< turn <<")"<<endl;
+        cout<<endl<<currentPlayer<<getText("turn_")<< turn <<")"<<endl;
         displayboard(myView);
 
         int row, col;
         if (playerTurn){
             string input;
-            cout<<getText(coordinates);
+            cout<<getText("coordinates");
             cin>>input;
 
             if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z')){
                 save_Game(playerBoard, pcBoard, viewBoardPlayer, viewBoardPc, playerName, "Computer", turn);
-                cout<<getText(g_c)<<endl;
+                cout<<getText("g_c")<<endl;
                 stopMusic();
                 return;
             }
 
             if (input.length() < 2 || input.length() > 3){
-                cout<<getText(input_lng)<<endl;
+                cout<<getText("input_lng")<<endl;
                 continue;
             }
 
             char rowChar = toupper(input[0]);
             if (rowChar < 'A' || rowChar > 'J'){
-                cout<<getText(invalid_r)<<endl;
+                cout<<getText("invalid_r")<<endl;
                 continue;
             }
             row = rowChar - 'A';
@@ -89,12 +89,12 @@ void playerVsPC(){
                 col = stoi(input.substr(1)) - 1;
             }
             catch (...){
-                cout<<getText(invalid_c)<<endl;
+                cout<<getText("invalid_c")<<endl;
                 continue;
             }
 
             if(col < 0 || col > 9){
-                cout<<getText(col_rang)<<endl;
+                cout<<getText("col_rang")<<endl;
                 continue;
             }
 
@@ -107,17 +107,17 @@ void playerVsPC(){
             }
             while(myView[row][col] == 'X' || myView[row][col] == 'O');
     
-            cout<<getText(pc_attc)<< char('A' + row) << col + 1 <<endl;  
+            cout<<getText("pc_attc")<< char('A' + row) << col + 1 <<endl;  
         }
 
         bool hit = makeshot(enemyBoard, row, col);
         myView[row][col] = hit ? 'X' : 'O';
 
         if (hit){
-            cout << getText(pc_attc)<< endl;
+            cout << getText("pc_attc")<< endl;
             (*myConsecutiveHits)++;
         }else {
-            cout << getText(miss)<< endl;
+            cout << getText("miss")<< endl;
             *myConsecutiveHits = 0;
         }
 
@@ -127,7 +127,7 @@ void playerVsPC(){
         checkAchievements(currentPlayer, hit,*myConsecutiveHits, turn, playerWin, true, shipsDestroyed, shipSize);
 
         if (playerWin){
-            cout<<currentPlayer<< getText(win)<<endl;
+            cout<<currentPlayer<< getText("win")<<endl;
             stopMusic();
             gameOver = true;
         }
@@ -164,43 +164,43 @@ void  ContinuePcVsPlayer(char playerBoard[10][10], char pcBoard[10][10],
 
         if (shipsLeft == 1) playSuspenseMusic();
 
-        std::cout<<endl<<currentPlayer<< getText(turn_)<<turn<<")"<<endl;
+        std::cout<<endl<<currentPlayer<< getText("turn_")<<turn<<")"<<endl;
         displayboard(myView);
 
         int row, col;
         std::string input;
 
         if (playerTurn){
-            std::cout<<getText(coordinates);
+            std::cout<<getText("coordinates");
             std::cin>>input;
 
             if (input == "Z" || input == "z"){
                 save_Game(playerBoard, pcBoard, viewBoardPlayer, viewBoardPc, playerName, "Computer",turn);
-                std::cout<<getText(g_c)<<endl;
+                std::cout<<getText("g_c")<<endl;
                 stopMusic();
                 return;
             }
 
             if (input.length() < 2 || input.length() > 3){
-                std::cout<<getText(input_lng)<<endl;
+                std::cout<<getText("input_lng")<<endl;
                 continue;
             }
 
             char rowChar = toupper(input[0]);
             if (rowChar < 'A' || rowChar > 'J'){
-                std::cout<<getText(invalid_r)<<endl;
+                std::cout<<getText("invalid_r")<<endl;
                 continue;
             }
 
             try{
                 col = std::stoi(input.substr(1)) - 1;
             } catch (...){
-                std::cout<<getText(invalid_c)<<endl;
+                std::cout<<getText("invalid_c")<<endl;
                 continue;
             }
 
             if (col < 0 || col > 9){
-                std::cout<<getText(col_rang)<<endl;
+                std::cout<<getText("col_rang")<<endl;
                 continue;
             }
         }
@@ -213,18 +213,18 @@ void  ContinuePcVsPlayer(char playerBoard[10][10], char pcBoard[10][10],
                 col = rand() % 10;
             }
 
-            std::cout<<getText(pc_attc)<<char('A'+ row) << col + 1<<endl;
+            std::cout<<getText("pc_attc")<<char('A'+ row) << col + 1<<endl;
 
         }
         bool hit = makeshot(enemyBoard, row, col);
         myView[row][col] = hit ? 'X' : 'O';
 
         if (hit){
-            std::cout<<getText(hit)<<endl;
+            std::cout<<getText("hit")<<endl;
             (*myConsecutiveHits)++;
         }
         else {
-            std::cout<<getText(miss)<<endl;
+            std::cout<<getText("miss")<<endl;
             *myConsecutiveHits = 0;
         }
 
@@ -235,7 +235,7 @@ void  ContinuePcVsPlayer(char playerBoard[10][10], char pcBoard[10][10],
         checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, true,shipsDestroyed, shipSize);
 
         if (playerWin){
-            std::cout<<currentPlayer<<getText(win)<<endl;
+            std::cout<<currentPlayer<<getText("win")<<endl;
             stopMusic();
             gameOver = true;
         }
