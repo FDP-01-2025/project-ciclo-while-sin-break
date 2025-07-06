@@ -3,21 +3,25 @@
 #include "save_load.h"
 #include "board.h"
 #include "shot.h"
-#include "music.h" // Music functions
+#include "music.h"
 #include "language.h"
 #include <iostream>
 using namespace std;
 
 void startMultiplayer()
 {
-    playCalmMusic(); // Play calm music at start of match
+    playCalmMusic(); // Música tranquila al inicio
 
     char player1Board[10][10], player2Board[10][10];
     char viewBoard1[10][10], viewBoard2[10][10];
     string name1, name2;
     int turn = 1;
 
+<<<<<<< HEAD
     cout <<getText("name1")<<endl;
+=======
+    cout << getText("name1");
+>>>>>>> 51ccc2ee05d6b4de855964caac543269033748c8
     cin >> name1;
     cout << getText("name2")<<endl;
     cin >> name2;
@@ -27,10 +31,10 @@ void startMultiplayer()
     Initializeboard(viewBoard1);
     Initializeboard(viewBoard2);
 
-    cout << name1 << getText("p_ships")<<endl;
+    cout << name1 << getText("p_ships") << endl;
     placeShips(player1Board);
 
-    cout << name2 << getText("p_ships")<<endl;
+    cout << name2 << getText("p_ships") << endl;
     placeShips(player2Board);
 
     bool gameOver = false;
@@ -69,15 +73,14 @@ void startMultiplayer()
 
         if (shipsLeft == 1)
         {
-            playSuspenseMusic(); // Switch to suspense music
+            playSuspenseMusic(); // Música de suspenso si queda un solo barco
         }
 
-        cout << "\n"
-             << currentPlayer << getText("turn_")<< turn << ")"<<endl;
+        cout << "\n" << currentPlayer << getText("turn_") << turn << ")" << endl;
         displayboard(myView);
 
         string input;
-        cout << getText("coordinates")<<endl;
+        cout << getText("coordinates") << endl;
         cin >> input;
 
         if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
@@ -90,14 +93,18 @@ void startMultiplayer()
 
         if (input.length() < 2 || input.length() > 3)
         {
-            cout << getText("input_lng")<<endl;
+            cout << getText("input_lng") << endl;
             continue;
         }
 
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
+<<<<<<< HEAD
             cout << getText("invalid_r")<<endl;
+=======
+            cout << getText("invalid_r") << endl;
+>>>>>>> 51ccc2ee05d6b4de855964caac543269033748c8
             continue;
         }
         int row = rowChar - 'A';
@@ -109,40 +116,51 @@ void startMultiplayer()
         }
         catch (...)
         {
-            cout << getText("invalid_c")<<endl;
+            cout << getText("invalid_c") << endl;
             continue;
         }
 
         if (col < 0 || col > 9)
         {
-            cout << getText("col_rang")<<endl;
+            cout << getText("col_rang") << endl;
             continue;
         }
 
         bool hit = makeshot(enemyBoard, row, col);
         myView[row][col] = hit ? 'X' : 'O';
 
+        int shipSize = 0;
+        int shipsDestroyed = 0;
+
         if (hit)
         {
-            cout << getText("hit")<<endl;
+            cout << getText("hit") << endl;
             (*myConsecutiveHits)++;
+
+            // Verificar si es un barco de 1 casilla
+            bool isSingleShip = true;
+
+            if (row > 0 && enemyBoard[row - 1][col] == 'B') isSingleShip = false;
+            if (row < 9 && enemyBoard[row + 1][col] == 'B') isSingleShip = false;
+            if (col > 0 && enemyBoard[row][col - 1] == 'B') isSingleShip = false;
+            if (col < 9 && enemyBoard[row][col + 1] == 'B') isSingleShip = false;
+
+            if (isSingleShip)
+                shipSize = 1;
         }
         else
         {
-            cout << getText("miss")<<endl;
+            cout << getText("miss") << endl;
             *myConsecutiveHits = 0;
         }
 
         bool playerWin = hasLost(enemyBoard);
 
-        int shipSize = 0;
-        int shipsDestroyed = 0;
-
         checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed, shipSize);
 
         if (playerWin)
         {
-            cout << currentPlayer << getText("win")<<endl;
+            cout << currentPlayer << getText("win") << endl;
             stopMusic();
             gameOver = true;
         }
@@ -155,7 +173,7 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
                          char viewBoard1[10][10], char viewBoard2[10][10],
                          string name1, string name2, int turn)
 {
-    playCalmMusic(); // Calm music when continuing a saved game
+    playCalmMusic(); // Música tranquila al cargar partida
 
     bool gameOver = false;
     int hitConsecutive1 = 0, hitConsecutive2 = 0;
@@ -196,8 +214,9 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
             playSuspenseMusic();
         }
 
-        cout << "\n"
-             << currentPlayer << getText("turn_")<< turn << ")"<<endl;
+
+        cout << "\n" << currentPlayer << getText("turn_") << turn << ")"<<endl;
+
         displayboard(myView);
 
         string input;
@@ -207,21 +226,21 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z'))
         {
             save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
-            cout << getText("g_c")<<endl;
+            cout << getText("g_c") << endl;
             stopMusic();
             return;
         }
 
         if (input.length() < 2 || input.length() > 3)
         {
-            cout << getText("input_lng")<<endl;
+            cout << getText("input_lng") << endl;
             continue;
         }
 
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
-            cout << getText("invalid_r")<<endl;
+            cout << getText("invalid_r") << endl;
             continue;
         }
         int row = rowChar - 'A';
@@ -233,39 +252,51 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
         }
         catch (...)
         {
-            cout << getText("invalid_c")<<endl;
+            cout << getText("invalid_c") << endl;
             continue;
         }
 
         if (col < 0 || col > 9)
         {
-            cout << getText("col_rang")<<endl;
+            cout << getText("col_rang") << endl;
             continue;
         }
 
         bool hit = makeshot(enemyBoard, row, col);
         myView[row][col] = hit ? 'X' : 'O';
 
+        int shipSize = 0;
+        int shipsDestroyed = 0;
+
         if (hit)
         {
-            cout <<getText("hit")<<endl;
+            cout << getText("hit") << endl;
             (*myConsecutiveHits)++;
+
+            // Verificar si es un barco de 1 casilla
+            bool isSingleShip = true;
+
+            if (row > 0 && enemyBoard[row - 1][col] == 'B') isSingleShip = false;
+            if (row < 9 && enemyBoard[row + 1][col] == 'B') isSingleShip = false;
+            if (col > 0 && enemyBoard[row][col - 1] == 'B') isSingleShip = false;
+            if (col < 9 && enemyBoard[row][col + 1] == 'B') isSingleShip = false;
+
+            if (isSingleShip)
+                shipSize = 1;
         }
         else
         {
-            cout << getText("miss")<<endl;
+            cout << getText("miss") << endl;
             *myConsecutiveHits = 0;
         }
 
         bool playerWin = hasLost(enemyBoard);
-        int shipsDestroyed = 0;
-        int shipSize = 0;
 
         checkAchievements(currentPlayer, hit, *myConsecutiveHits, turn, playerWin, false, shipsDestroyed, shipSize);
 
         if (playerWin)
         {
-            cout << currentPlayer << getText("win")<<endl;
+            cout << currentPlayer << getText("win") << endl;
             stopMusic();
             gameOver = true;
         }
