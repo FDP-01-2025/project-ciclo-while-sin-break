@@ -17,11 +17,8 @@ void startMultiplayer()
     string name1, name2;
     int turn = 1;
 
-<<<<<<< HEAD
     cout <<getText("name1")<<endl;
-=======
     cout << getText("name1");
->>>>>>> 51ccc2ee05d6b4de855964caac543269033748c8
     cin >> name1;
     cout << getText("name2")<<endl;
     cin >> name2;
@@ -100,11 +97,8 @@ void startMultiplayer()
         char rowChar = toupper(input[0]);
         if (rowChar < 'A' || rowChar > 'J')
         {
-<<<<<<< HEAD
             cout << getText("invalid_r")<<endl;
-=======
             cout << getText("invalid_r") << endl;
->>>>>>> 51ccc2ee05d6b4de855964caac543269033748c8
             continue;
         }
         int row = rowChar - 'A';
