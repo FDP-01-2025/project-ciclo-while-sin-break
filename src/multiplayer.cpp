@@ -1,6 +1,6 @@
 #include "multiplayer.h"
 #include "achievements.h"
-#include "save_load.h"
+#include "save_load_multiplayer.h"  // Exclusivo para multijugador
 #include "board.h"
 #include "shot.h"
 #include "music.h"
@@ -84,7 +84,7 @@ void startMultiplayer() {
             cin.ignore(1000, '\n');
 
             if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z')) {
-                save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
+                saveMultiplayerGame(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
                 cout << getText("g_c") << endl;
                 stopMusic();
                 return;
@@ -211,7 +211,7 @@ void continueMultiplayer(char player1Board[10][10], char player2Board[10][10],
             cin.ignore(1000, '\n');
 
             if (input.length() == 1 && (input[0] == 'Z' || input[0] == 'z')) {
-                save_Game(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
+                saveMultiplayerGame(player1Board, player2Board, viewBoard1, viewBoard2, name1, name2, turn);
                 cout << getText("g_c") << endl;
                 stopMusic();
                 return;
