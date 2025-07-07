@@ -5,7 +5,8 @@
 #include <ctime>
 using namespace std;
 
-void Initializeboard(char board[10][10])
+// Inicializa el tablero llenándolo de '-'
+void initializeBoard(char board[10][10])
 {
     for (int row = 0; row < 10; row++)
     {
@@ -16,7 +17,8 @@ void Initializeboard(char board[10][10])
     }
 }
 
-void displayboard(const char board[10][10])
+// Muestra el tablero con colores
+void displayBoard(const char board[10][10])
 {
     cout << "\033[37m  "; // Letras de las columnas en blanco
     for (int col = 0; col < 10; col++)
@@ -48,13 +50,14 @@ void displayboard(const char board[10][10])
             }
             else
             {
-                cout << board[row][col] << "  "; // Cualquier otro símbolo normal
+                cout << board[row][col] << "  "; // Otros símbolos sin formato
             }
         }
         cout << endl;
     }
 }
 
+// Intenta colocar un barco, devuelve true si se colocó correctamente
 bool placeShip(char board[10][10], int row, int col, int size, char direction, char symbol)
 {
     if (direction == 'H')
@@ -93,10 +96,11 @@ bool placeShip(char board[10][10], int row, int col, int size, char direction, c
     return true;
 }
 
+// Permite al jugador colocar manualmente sus barcos, con limpieza de buffer
 void placeShips(char board[10][10])
 {
     int shipSizes[] = {5, 2, 2, 1, 1};
-    char shipSymbols[] = {'B','B','B','B','B'};
+    char shipSymbols[] = {'B', 'B', 'B', 'B', 'B'};
 
     for (int i = 0; i < 5; i++)
     {
@@ -104,32 +108,38 @@ void placeShips(char board[10][10])
         char direction;
         bool placed = false;
 
-        cout << getText("ship_size")<< shipSizes[i] << getText("sym")<< shipSymbols[i] << "')\n";
+        cout << getText("ship_size") << shipSizes[i] << getText("sym") << shipSymbols[i] << "')\n";
 
         while (!placed)
         {
-            cout <<getText("e_starting");
+            cout << getText("e_starting");
             char rowChar;
             cin >> rowChar;
-            row = toupper(rowChar) - 'A';
+            rowChar = toupper(rowChar);
+            cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la fila
 
-            
+            row = rowChar - 'A';
+
+            cout << getText("e_column");
             cin >> col;
-            col -= 1;
+            cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la columna
 
             cout << getText("direction");
             cin >> direction;
             direction = toupper(direction);
+            cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la dirección
 
-            if (row < 0 || row >= 10 || col < 0 || col >= 10)
+            if (row < 0 || row >= 10 || col < 1 || col > 10)
             {
                 cout << getText("invali_coor");
                 continue;
             }
 
+            col -= 1; // Ajusta la columna para índices de 0 a 9
+
             if (direction != 'H' && direction != 'V')
             {
-                cout <<getText("invali_dire");
+                cout << getText("invali_dire");
                 continue;
             }
 
@@ -137,40 +147,49 @@ void placeShips(char board[10][10])
 
             if (!placed)
             {
-                cout <<getText("no_place");
+                cout << getText("no_place");
             }
             else
             {
-                displayboard(board);
+                displayBoard(board);
             }
         }
     }
 }
 
-void placeShipRandom(char board[10][10]){
-    int shipSizesR[] = {5, 2, 2, 1, 1};
-    char shipRSymbols[] = {'B', 'B', 'B', 'B', 'B'};
+// Coloca los barcos de forma aleatoria
+void placeShipRandom(char board[10][10])
+{
+    int shipSizes[] = {5, 2, 2, 1, 1};
+    char shipSymbols[] = {'B', 'B', 'B', 'B', 'B'};
 
     srand(time(0));
 
-    for(int i = 0; i < 5; i++){
+    for (int i = 0; i < 5; i++)
+    {
         bool placed = false;
 
-        while (!placed){
+        while (!placed)
+        {
             int row = rand() % 10;
             int col = rand() % 10;
             char direction = (rand() % 2 == 0) ? 'H' : 'V';
 
-             placed = placeShip(board, row, col, shipSizesR[i], direction, shipRSymbols[i]);
+            placed = placeShip(board, row, col, shipSizes[i], direction, shipSymbols[i]);
         }
     }
 }
 
+// Verifica si ya perdiste (si quedan barcos en el tablero)
 bool hasLost(char board[10][10])
 {
     for (int i = 0; i < 10; ++i)
+    {
         for (int j = 0; j < 10; ++j)
+        {
             if (board[i][j] == 'B')
                 return false;
+        }
+    }
     return true;
 }
