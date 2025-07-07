@@ -1,7 +1,7 @@
 #include "src/board.h"
 #include "src/multiplayer.h"
-#include "src/save_load.h"  // Para partidas contra PC
-#include "src/save_load_multiplayer.h"  // Para partidas multijugador
+#include "src/save_load.h"  
+#include "src/save_load_multiplayer.h"
 #include "src/music.h"
 #include "src/pc_vs_player.h"
 #include "src/language.h"
@@ -50,31 +50,41 @@ int main() {
             }
 
             case 3: {
-                stopMusic();
                 int modeChoice;
-                
+
                 cout << "1. Load PC vs Player Game" << endl;
                 cout << "2. Load Multiplayer Game" << endl;
+                cout << getText("ch_op") << endl;
                 cin >> modeChoice;
 
-                char board1[10][10], board2[10][10];
-                char view1[10][10], view2[10][10];
-                string name1, name2;
-                int turn;
-
                 if (modeChoice == 1) {
+                    stopMusic();
+                    char board1[10][10], board2[10][10];
+                    char view1[10][10], view2[10][10];
+                    string name1, name2;
+                    int turn;
+
                     load_Game(board1, board2, view1, view2, name1, name2, turn);
                     cout << getText("load_G") << name1 << getText("and") << name2 << "." << endl;
                     ContinuePcVsPlayer(board1, board2, view1, view2, name1, turn);
+                    playMenuMusic();
+
                 } else if (modeChoice == 2) {
+                    stopMusic();
+                    char board1[10][10], board2[10][10];
+                    char view1[10][10], view2[10][10];
+                    string name1, name2;
+                    int turn;
+
                     loadMultiplayerGame(board1, board2, view1, view2, name1, name2, turn);
                     cout << getText("load_G") << name1 << getText("and") << name2 << "." << endl;
                     continueMultiplayer(board1, board2, view1, view2, name1, name2, turn);
+                    playMenuMusic();
+
                 } else {
                     cout << getText("inv_op") << endl;
                 }
 
-                playMenuMusic();
                 break;
             }
 
