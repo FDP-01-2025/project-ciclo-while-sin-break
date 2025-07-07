@@ -6,7 +6,7 @@
 using namespace std;
 
 // Inicializa el tablero llenándolo de '-'
-void initializeBoard(char board[10][10])
+void Initializeboard(char board[10][10])
 {
     for (int row = 0; row < 10; row++)
     {
@@ -18,7 +18,7 @@ void initializeBoard(char board[10][10])
 }
 
 // Muestra el tablero con colores
-void displayBoard(const char board[10][10])
+void displayboard(const char board[10][10])
 {
     cout << "\033[37m  "; // Letras de las columnas en blanco
     for (int col = 0; col < 10; col++)
@@ -34,7 +34,7 @@ void displayBoard(const char board[10][10])
         {
             if (board[row][col] == 'B')
             {
-                cout << "\033[34m" << board[row][col] << "  \033[0m"; // Azul para barcos (si decides mostrarlos)
+                cout << "\033[34m" << board[row][col] << "  \033[0m"; // Azul para barcos
             }
             else if (board[row][col] == 'X')
             {
@@ -96,7 +96,7 @@ bool placeShip(char board[10][10], int row, int col, int size, char direction, c
     return true;
 }
 
-// Permite al jugador colocar manualmente sus barcos, con limpieza de buffer
+// Permite al jugador colocar manualmente sus barcos pidiendo coordenadas y dirección
 void placeShips(char board[10][10])
 {
     int shipSizes[] = {5, 2, 2, 1, 1};
@@ -108,38 +108,56 @@ void placeShips(char board[10][10])
         char direction;
         bool placed = false;
 
-        cout << getText("ship_size") << shipSizes[i] << getText("sym") << shipSymbols[i] << "')\n";
+        cout << getText("ship_size") << shipSizes[i] << " and symbol '" << shipSymbols[i] << "'\n";
 
         while (!placed)
         {
-            cout << getText("e_starting")<<endl;
-            char rowChar;
-            cin >> rowChar;
-            rowChar = toupper(rowChar);
-            cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la fila
+            cout << "Enter the starting coordinate for the ship (e.g., A1): ";
+            string input;
+            cin >> input;
+            cin.clear();
+            cin.ignore(1000, '\n');
 
-            row = rowChar - 'A';
-
-            cout << getText("e_column")<<endl;
-            cin >> col;
-            cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la columna
-
-            cout << getText("direction")<<endl;
-            cin >> direction;
-            direction = toupper(direction);
-            cin.ignore(1000, '\n'); // Limpia el buffer después de ingresar la dirección
-
-            if (row < 0 || row >= 10 || col < 1 || col > 10)
+            if (input.length() < 2 || input.length() > 3)
             {
-                cout << getText("invali_coor")<<endl;
+                cout << "Invalid coordinate format. Try again.\n";
                 continue;
             }
 
-            col -= 1; // Ajusta la columna para índices de 0 a 9
+            char rowChar = toupper(input[0]);
+            if (rowChar < 'A' || rowChar > 'J')
+            {
+                cout << "Invalid row. Must be A-J.\n";
+                continue;
+            }
+            row = rowChar - 'A';
+
+            try
+            {
+                col = stoi(input.substr(1)) - 1;
+            }
+            catch (...)
+            {
+                cout << "Invalid column number.\n";
+                continue;
+            }
+
+            if (col < 0 || col >= 10)
+            {
+                cout << "Column out of range. Must be 1-10.\n";
+                continue;
+            }
+
+            cout << "Enter direction (H for horizontal, V for vertical): ";
+            cin >> direction;
+            cin.clear();
+            cin.ignore(1000, '\n');
+
+            direction = toupper(direction);
 
             if (direction != 'H' && direction != 'V')
             {
-                cout << getText("invali_dire")<<endl;
+                cout << "Invalid direction. Enter H or V.\n";
                 continue;
             }
 
@@ -147,11 +165,11 @@ void placeShips(char board[10][10])
 
             if (!placed)
             {
-                cout << getText("no_place")<<endl;
+                cout << "Cannot place ship here. It overlaps or goes out of bounds. Try again.\n";
             }
             else
             {
-                displayBoard(board);
+                displayboard(board);
             }
         }
     }
