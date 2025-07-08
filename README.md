@@ -50,11 +50,6 @@ Usa el comando cd para entrar a la carpeta donde está main.cpp y la carpeta
 src/.
 3. Ejecuta el comando de compilación
 g++ main.cpp src/*.cpp -o battleship.exe -lwinmm
-o main.cpp: archivo principal.
-o src/*.cpp: todos los archivos .cpp dentro de src/.
-o -o battleship.exe: define el nombre del ejecutable.
-o -lwinmm: enlaza la librería winmm (útil si usas funciones de multimedia
-como sonido).
 4. Verifica que se generó battleship.exe
 Revisa que aparezca el archivo en la carpeta.
 5. Ejecuta el juego
