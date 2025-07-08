@@ -31,12 +31,12 @@ Para su desarrollo se utilizaron estructuras básicas de programación como cond
    ## Documentacion
    ### Flujogramas
    https://drive.google.com/file/d/1NtFZZK9xpot_sQOpZgHA2dQNeXewBq2-/view?usp=drive_link
-   Luego de ingresar al enlace sale una opción para abrir con draw.io lo cual le tiene que dar ahí ya que los
-    flujogramas se han creado separados es decir cada flujograma esta dividido en paginas diferentes.
+   •	Nota: Al abrir el enlace, se recomienda seleccionar la opción "Abrir con draw.io" para una visualización correcta,
+    ya que los flujogramas están organizados en diferentes páginas dentro del mismo archivo.
    
-   ### documento pdf
-   [Proyecto final.pdf](https://github.com/user-attachments/files/21114219/Proyecto.final.pdf)
-
+   ### documento PDF
+   
+   [Proyecto final - ciclo while sin break.pdf](https://github.com/user-attachments/files/21115418/Proyecto.final.-.ciclo.while.sin.break.pdf)
 
 
 ## Instrucciones de Ejecución
@@ -44,3 +44,18 @@ Para su desarrollo se utilizaron estructuras básicas de programación como cond
 1. Clona este repositorio en tu máquina local:
    ```bash
    git clone [https://github.com/FDP-01-2025/project-ciclo-while-sin-break.git]
+   Abre la terminal
+2. Navega a la carpeta del proyecto
+Usa el comando cd para entrar a la carpeta donde está main.cpp y la carpeta
+src/.
+3. Ejecuta el comando de compilación
+g++ main.cpp src/*.cpp -o battleship.exe -lwinmm
+o main.cpp: archivo principal.
+o src/*.cpp: todos los archivos .cpp dentro de src/.
+o -o battleship.exe: define el nombre del ejecutable.
+o -lwinmm: enlaza la librería winmm (útil si usas funciones de multimedia
+como sonido).
+4. Verifica que se generó battleship.exe
+Revisa que aparezca el archivo en la carpeta.
+5. Ejecuta el juego
+battleship.exe
