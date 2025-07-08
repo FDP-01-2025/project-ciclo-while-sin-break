@@ -28,6 +28,13 @@ Para su desarrollo se utilizaron estructuras básicas de programación como cond
    **Carnet:** [00217225]
 
 
+   ## Documentacion
+   ### Flujogramas
+   https://drive.google.com/file/d/1NtFZZK9xpot_sQOpZgHA2dQNeXewBq2-/view?usp=drive_link
+   ### documento pdf
+   [Proyecto final.pdf](https://github.com/user-attachments/files/21114195/Proyecto.final.pdf)
+
+
 ## Instrucciones de Ejecución
 
 1. Clona este repositorio en tu máquina local:
