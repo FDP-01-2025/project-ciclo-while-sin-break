@@ -31,6 +31,9 @@ Para su desarrollo se utilizaron estructuras básicas de programación como cond
    ## Documentacion
    ### Flujogramas
    https://drive.google.com/file/d/1NtFZZK9xpot_sQOpZgHA2dQNeXewBq2-/view?usp=drive_link
+   Luego de ingresar al ingresar al enlace sale una opción para abrir con draw.io lo cual le tiene que dar ahí ya que los
+    flujogramas se han creado separados es decir cada flujograma esta dividido en paginas diferentes.
+   
    ### documento pdf
    [Proyecto final.pdf](https://github.com/user-attachments/files/21114195/Proyecto.final.pdf)
 
